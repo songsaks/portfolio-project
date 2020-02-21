@@ -2,7 +2,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {%  load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -54,45 +53,31 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="#">Twitter</a>
-            <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link" href="#">Resume</a>
+            <a class="nav-item nav-link active" href="#">Blog</a>
           </div>
         </div>
       </nav>
 </header>
 
 <main role="main">
+  <div class="container">
+      <h1 class="text-center pt-3">Welcome to Songsak's Blog</h1>
+      <br />
+      <br>
+      <h2>Last Posts</h2>
+      <hr />
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hi! I am Songsak</h1>
-      <p class="lead text-muted">I like to learn how to write and develope the computer application and the python and django are my favarit one</p>
-      <p>
-        <a href="mailto:webmaster@example.com" class="btn btn-secondary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'mypic.jpg' %}" height="200"/>
-    </div>
-  </section>
+      {% for blog in blogs.all %}
+        <a href=""><h3>{{ blog.title }}</h3></a>
+        {{ blog.pub_date_pretty }}
+        <br />
+        <img class="img-fluid" src="{{ blog.image.url }}" height="200" width="200">
+        <br />
+        <p>{{ blog.body }}</p>
+      {% endfor %}
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for job in jobs1.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
   </div>
-
 </main>
 
 <footer class="text-muted">
